@@ -26,6 +26,7 @@ const TipDateStart = 'The date range to generate call logs, the interval between
 const TipDateEnd = 'The date range to generate call logs, the interval between every two call logs is 5~30 minutes';
 function App() {
   const dateFormat = 'YYYY-MM-DD HH:mm:ss.000 +00:00';
+  const validDateFormat = 'YYYY-MM-DD HH:mm';
   const date = new Date();
   const tableName = 'call_conversations';
   // const accountId = '987';
@@ -63,12 +64,15 @@ function App() {
   const isValidDate = (): boolean => {
 	let _dateEnd = moment(), _dateStart = moment();
 	try {
-		_dateEnd = moment(new Date(dateEnd));
-		_dateStart = moment(new Date(dateStart));
+		_dateEnd = moment(dateEnd, validDateFormat);
+		_dateStart = moment(dateStart, validDateFormat);
 	} catch (e) {
+		console.log('catch moment error', e);
 		return false;
 	}
 	if (!_dateEnd.isValid() || !_dateStart.isValid()) {
+		console.log('isValid _dateEnd moment', _dateEnd);
+		console.log('isValid _dateStart moment', _dateStart);
 		return false;
 	}
 	if (_dateEnd.isBefore(_dateStart)) {
@@ -86,13 +90,16 @@ function App() {
 	  if (_numberEnd <= _numberStart) {
 		  return;
 	  }
-	  if (moment(new Date(dateEnd)).isAfter(date)) {
+	  if (moment(dateEnd, validDateFormat).isAfter(date)) {
 		return;
 	  }
-	  if (moment(new Date(dateStart)).isAfter(moment(new Date(dateEnd)))) {
+	  if (moment(dateStart, validDateFormat).isAfter(moment(dateEnd, validDateFormat))) {
 		return;
 	  }
-	  let aDate = moment(new Date(dateEnd));
+	  let aDate = moment(dateEnd, validDateFormat);
+	  aDate.hours(date.getHours());
+	  aDate.minutes(date.getMinutes());
+	  aDate.seconds(date.getSeconds());
 	  let finalText = '';
 	  for (let i = _numberStart ; i <= _numberEnd; i++) {
 		  aDate = aDate.subtract(randomSec(), 's');
