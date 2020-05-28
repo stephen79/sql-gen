@@ -1,0 +1,96 @@
+$primaryColor: #BADA55;
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: $primaryColor;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.inputForm {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    input {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
+.inputRow {
+    display: flex;
+    flex-direction: row;
+}
+.inputTitle {
+    font-size: 15px;
+    font-weight: 'bold';
+    margin-right: 10px;
+}
+.dateInput {
+    width: 200px;
+}
+.genButton {
+    width: 200px;
+    height: 50px;
+}
+.outputText {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+.inputHint {
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+.hintText {
+    font-size: 13px;
+    color: #565b46;
+}
+.warnText {
+    font-size: 13px;
+    color: #d86d16;
+}
+.resetBox {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    font-size: 13px;
+}
